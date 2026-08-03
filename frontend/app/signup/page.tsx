@@ -11,7 +11,7 @@ export default function Signup() {
         <input type="email" placeholder="Email" className="Input" required name="Email" />
         <input type="password" placeholder="Password" className="Input" required name="Password" />
         <input type="password" placeholder="Confirm Password" className="Input" required name="ConfirmPassword" />
-        <button type="submit" className="bg-blue-300 w-auto h-8 rounded-md text-black">Signup</button>
+        <button type="submit" className="bg-blue-300 w-auto h-8 rounded-md !text-black">Signup</button>
       </form>
       <p>Already have an account? <span onClick={()=>router.push("/login")} className="text-blue-300 cursor-pointer">Login</span></p>
     </div>
