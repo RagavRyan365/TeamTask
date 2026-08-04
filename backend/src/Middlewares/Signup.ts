@@ -18,7 +18,7 @@ function password_check(req:express.Request,res:express.Response,next:express.Ne
     next();
 }
 
-signup.post("/",(req,res)=>{
+signup.post("/",password_check,email_check,(req,res)=>{
     const {username,email,password} = req.body;
     const newUser = new User({
         Username:username,

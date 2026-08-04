@@ -15,7 +15,7 @@ function password_check(req, res, next) {
     }
     next();
 }
-signup.post("/", (req, res) => {
+signup.post("/", password_check, email_check, (req, res) => {
     const { username, email, password } = req.body;
     const newUser = new User({
         Username: username,
