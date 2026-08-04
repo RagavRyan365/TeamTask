@@ -13,7 +13,7 @@ export default function Signup() {
         <input type="password" placeholder="Confirm Password" className="Input" required name="ConfirmPassword" />
         <button type="submit" className="bg-[var(--button-color)] w-auto h-8 rounded-md !text-black">Signup</button>
       </form>
-      <p className="dark:text-black light:text-white">Already have an account? <span onClick={()=>router.push("/login")} className="text-blue-300 cursor-pointer">Login</span></p>
+      <p className="dark:text-white light:text-black">Already have an account? <span onClick={()=>router.push("/login")} className="text-blue-300 cursor-pointer">Login</span></p>
     </div>
   );
 }

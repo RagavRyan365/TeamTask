@@ -3,6 +3,8 @@
 :root{
   --background-color:rgb(11, 0, 36);
   --button-color:rgb(67, 115, 247);
+  --input-color:rgb(43, 86, 227);
+  --input-bg-color:rgb(61, 103, 242);
 }
 
 @media (prefers-color-scheme: dark){
@@ -13,7 +15,7 @@
 
 @layer components{
   .Input{
-    @apply border-1 border-blue-300 bg-blue-900 rounded-md px-3 py-1 hover:text-black hover:bg-blue-200 focus:text-black focus:outline-none focus:bg-blue-300 focus:text-black;
+    @apply border-1 border-[var(--input-color)] text-white rounded-md px-3 py-1 hover:text-black hover:bg-[var(--input-bg-color)] focus:text-black focus:outline-none focus:bg[var(--input-bg-color)] focus:text-black;
   }
 
 }
