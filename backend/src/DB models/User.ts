@@ -1,5 +1,9 @@
 import mongoose,{model,Schema} from "mongoose";
-import ITask from "./Task";
+
+interface ITask{
+    title:String;
+    completed:Boolean;
+}
 
 interface IUser{
     Username:string;

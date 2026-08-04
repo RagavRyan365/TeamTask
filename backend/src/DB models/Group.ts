@@ -1,5 +1,9 @@
 import mongoose,{model,Schema} from "mongoose";
-import ITask from "./Task";
+
+interface ITask{
+    title:String;
+    completed:Boolean;
+}
 
 interface GroupUser{
     Username:string;
@@ -16,7 +20,7 @@ interface IGroup{
 
 const GroupSchema = new Schema<IGroup>({
     Name:{type:String,required:true},
-    User:[{
+    Users:[{
         Username:{type:String,required:true},
         Email:{type:String,required:true},
         isAdmin:{type:Boolean,default:false},
@@ -26,7 +30,7 @@ const GroupSchema = new Schema<IGroup>({
         title:{type:String,required:true},
         completed:{type:Boolean,default:false}
     }],
-}),
+});
 
 const Group = model<IGroup>('group',GroupSchema);
 
