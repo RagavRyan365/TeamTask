@@ -1,7 +1,14 @@
 import express from "express";
 import cors from 'cors';
+import dotenv from 'dotenv';
+import mongoose from "mongoose";
+dotenv.config();
 const app = express();
 const port = 8080;
+//connect to mongodb
+mongoose.connect(process.env.MONGODB_URL)
+    .then(() => console.log("connected to mongodb"))
+    .catch((err) => console.log(err));
 app.use(cors());
 app.use(express.json());
 let users = {};
