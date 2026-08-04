@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root{
-  --background-color:rgb(0, 0, 24);
+  --background-color:rgb(11, 0, 36);
+  --button-color:rgb(67, 115, 247);
 }
 
 @media (prefers-color-scheme: dark){
   :root{
-    --background-color:rgb(0, 0, 24);
+    --background-color:rgb(11, 0, 36);
   }
 }
 
