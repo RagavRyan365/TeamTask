@@ -1,0 +1,25 @@
+import mongoose,{model,Schema} from "mongoose";
+import ITask from "./Task";
+
+interface IUser{
+    Username:string;
+    Email:String;
+    Password:String;
+    Groups?:String[];
+    Task?:ITask[];
+}
+
+const UserSchema = new Schema<IUser>({
+    Username:{type:String,required:true},
+    Email:{type:String,required:true},
+    Password:{type:String,required:true},
+    Groups:[{type:String}],
+    Task:[{
+        title:{type:String,required:true},
+        completed:{type:Boolean,default:false}
+    }],
+});
+
+const User = model<IUser>('user',UserSchema);
+
+export default User;

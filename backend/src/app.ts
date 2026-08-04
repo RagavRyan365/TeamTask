@@ -5,6 +5,9 @@ import mongoose from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 
+import User from "./DB models/User";
+import Group from "./DB models/Group";
+
 dotenv.config();
 
 const app = express();
