@@ -34,7 +34,7 @@ signup.post("/",password_check,email_check,async(req,res)=>{
         Password:await password_hasing(password),
     });
     newUser.save().then((user)=>{
-        res.status(200).json({message:"user created successfully",data:user});
+        res.status(201).json({message:"user created successfully",data:user});
     }).catch((err)=>{
         res.status(400).json({message:"error creating user",error:err});
     });
