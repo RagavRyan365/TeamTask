@@ -1,7 +1,11 @@
 import express from "express";
+import bcrypt from "bcrypt"
+
 import User from "../DB models/User.js";
+import { stringify } from "node:querystring";
 const signup = express.Router();
 
+//Check the sigup email is already exist or not
 async function email_check(req:express.Request,res:express.Response,next:express.NextFunction){
     const {email} = req.body;
     if(await User.findOne({Email:email}) != null){
@@ -10,6 +14,7 @@ async function email_check(req:express.Request,res:express.Response,next:express
     next();
 }
 
+//Check both the Password and Confirm Password are equal or not
 function password_check(req:express.Request,res:express.Response,next:express.NextFunction){
     const {password,confirmPassword} = req.body;
     if(password !== confirmPassword){
@@ -17,13 +22,16 @@ function password_check(req:express.Request,res:express.Response,next:express.Ne
     }
     next();
 }
+async function password_hasing(password:string){
+    return await bcrypt.hash(password,10);
+}
 
-signup.post("/",password_check,email_check,(req,res)=>{
+signup.post("/",password_check,email_check,async(req,res)=>{
     const {username,email,password} = req.body;
     const newUser = new User({
         Username:username,
         Email:email,
-        Password:password,
+        Password:await password_hasing(password),
     });
     newUser.save().then((user)=>{
         res.status(200).json({message:"user created successfully",data:user});

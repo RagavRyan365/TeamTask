@@ -10,6 +10,7 @@ import Group from "./DB models/Group.js";
 
 //Import middleware
 import signup from "./Middlewares/Signup.js";
+import login from "./Middlewares/Login.js";
 
 dotenv.config();
 
@@ -21,7 +22,10 @@ mongoose.connect(process.env.MONGODB_URL as string)
 .then(()=>console.log("connected to mongodb"))
 .catch((err)=>console.log(err));    
 
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+}));
 app.use(express.json());
 
 //sesiion middleware
@@ -42,13 +46,18 @@ app.use(session({
 
 //Signup Middleware
 app.use("/api/user/signup",signup);
+app.use("/api/user/login",login);
 
 
 //user info route -------------------------------------------------
-app.get("/api/users/",(req,res)=>{
-    const users = User.find().then((users: any)=>{
-        res.status(200).json({message:"user info",data:users});
-    });
+app.get("/admin/api/users/list",async(req,res)=>{
+    const Users = await User.find({},"Username Email");
+    res.status(200).json({
+        message:"user list",
+        data:{
+            Users
+        }
+    })
 });
 
 app.listen(port,()=>console.log("server is alive on port 8080"));

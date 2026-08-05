@@ -1,7 +1,7 @@
 import mongoose,{model,Schema} from "mongoose";
 
 interface ITask{
-    title:String;
+    title:string;
     completed:Boolean;
 }
 

@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 interface ITask {
-    title: String;
+    title: string;
     completed: Boolean;
 }
 interface IUser {
     Username: string;
-    Email: String;
-    Password: String;
-    Groups?: String[];
+    Email: string;
+    Password: string;
+    Groups?: string[];
     Task?: ITask[];
 }
 declare const User: mongoose.Model<IUser, {}, {}, {}, mongoose.Document<unknown, {}, IUser, {}, mongoose.DefaultSchemaOptions> & IUser & {

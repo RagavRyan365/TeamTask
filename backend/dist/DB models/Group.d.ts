@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 interface ITask {
-    title: String;
+    title: string;
     completed: Boolean;
 }
 interface GroupUser {

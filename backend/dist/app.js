@@ -8,6 +8,7 @@ import User from "./DB models/User.js";
 import Group from "./DB models/Group.js";
 //Import middleware
 import signup from "./Middlewares/Signup.js";
+import login from "./Middlewares/Login.js";
 dotenv.config();
 const app = express();
 const port = 8080;
@@ -15,7 +16,10 @@ const port = 8080;
 mongoose.connect(process.env.MONGODB_URL)
     .then(() => console.log("connected to mongodb"))
     .catch((err) => console.log(err));
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+}));
 app.use(express.json());
 //sesiion middleware
 app.use(session({
@@ -34,10 +38,15 @@ app.use(session({
 }));
 //Signup Middleware
 app.use("/api/user/signup", signup);
+app.use("/api/user/login", login);
 //user info route -------------------------------------------------
-app.get("/api/users/", (req, res) => {
-    const users = User.find().then((users) => {
-        res.status(200).json({ message: "user info", data: users });
+app.get("/admin/api/users/list", async (req, res) => {
+    const Users = await User.find({}, "Username Email");
+    res.status(200).json({
+        message: "user list",
+        data: {
+            Users
+        }
     });
 });
 app.listen(port, () => console.log("server is alive on port 8080"));
