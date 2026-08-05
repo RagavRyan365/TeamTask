@@ -11,7 +11,7 @@ export default function Login() {
         <input type="password" placeholder="Password" className="Input" required name="Password" />
         <button type="submit" className="bg-[var(--button-color)] w-auto h-8 rounded-md text-black">Login</button>
       </form>
-      <p className="dark:text-black light:text-white">Don't have an account? <span onClick={()=>router.push("/signup")} className="text-blue-300 cursor-pointer">Signup</span></p>
+      <p className="dark:text-white light:text-black">Don't have an account? <span onClick={()=>router.push("/signup")} className="text-blue-300 cursor-pointer">Signup</span></p>
     </div>
   );
 }
