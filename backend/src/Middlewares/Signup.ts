@@ -26,7 +26,7 @@ async function password_hasing(password:string){
     return await bcrypt.hash(password,10);
 }
 
-signup.post("/",password_check,email_check,async(req,res)=>{
+signup.post("/",email_check,password_check,async(req,res)=>{
     const {username,email,password} = req.body;
     const newUser = new User({
         Username:username,
