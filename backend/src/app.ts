@@ -18,7 +18,7 @@ const app = express();
 const port:number = 8080;
 
 //connect to mongodb
-mongoose.connect(process.env.MONGODB_URL as string)
+mongoose.connect(process.env.MONGODB_URL as string,{dbName:"user"})
 .then(()=>console.log("connected to mongodb"))
 .catch((err)=>console.log(err));    
 

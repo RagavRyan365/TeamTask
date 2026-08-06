@@ -12,6 +12,7 @@ login.post("/", async (req, res) => {
     if (!isMatch) {
         return res.status(401).json({ message: "Invalid Email or Password" });
     }
+    req.session.user = user._id.toString();
     res.status(200).json({ message: "Login successful", data: { user } });
 });
 export default login;
