@@ -48,6 +48,12 @@ app.use(session({
 app.use("/api/user/signup",signup);
 app.use("/api/user/login",login);
 
+//user auth
+app.get("/api/user/Auth",(req,res)=>{
+    if(req.session?.user){
+        return res.status(200).json({message:"User is Aunthenticated"});
+    }
+});
 
 //user info route -------------------------------------------------
 app.get("/admin/api/users/list",async(req,res)=>{
