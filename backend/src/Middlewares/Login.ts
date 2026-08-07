@@ -16,10 +16,8 @@ login.post("/",async(req,res)=>{
     if(!isMatch){
         return res.status(401).json({message:"Invalid Email or Password"});
     }
-    else{
-        req.session.user = user._id.toString();
-        return res.status(200).json({message:"Login successful",data:{user}});
-    }
+    req.session.user = user._id.toString();
+    return res.status(200).json({message:"Login successful",data:{user}});
 
 });
 
