@@ -27,8 +27,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: true,
+        secure: process.env.NODE_ENV === "pro",
         httpOnly: true,
+        sameSite: process.env.NODE_ENV === "pro" ? "none" : "lax",
         maxAge: 1000 * 60 * 60 * 24 * 5,
     },
     store: MongoStore.create({
@@ -36,12 +37,13 @@ app.use(session({
         collectionName: "sessions",
     }),
 }));
+app.set("trust proxy", 1);
 //Signup Middleware
 app.use("/api/user/signup", signup);
 app.use("/api/user/login", login);
 //user auth
 app.get("/api/user/Auth", (req, res) => {
-    if (req.session?.user) {
+    if (req.session.user) {
         return res.status(200).json({ message: "User is Aunthenticated" });
     }
     else {
