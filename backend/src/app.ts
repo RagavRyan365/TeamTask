@@ -53,9 +53,6 @@ app.get("/api/user/Auth",(req,res)=>{
     if(req.session?.user){
         return res.status(200).json({message:"User is Aunthenticated"});
     }
-    else{
-        return res.status(401).json({message:"User is not Authenticated"})
-    }
 });
 
 //user info route -------------------------------------------------
