@@ -32,9 +32,9 @@ app.use(express.json());
 app.use(session({
     secret:process.env.SESSION_SECRET as string,
     resave:false,
-    saveUninitialized:true,
+    saveUninitialized:false,
     cookie:{
-        secure:false,
+        secure:true,
         httpOnly:true,
         maxAge:1000*60*60*24*5,
     },
